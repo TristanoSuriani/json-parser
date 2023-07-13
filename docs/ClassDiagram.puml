@@ -1,0 +1,44 @@
+@startuml
+
+class CSVParser {
+  +parse(String text): CSV
+}
+
+class CSV {
+  -Header header (1..1)
+  -Body body (1..1)
+  --
+  +map(Function<Row,T> fn): T
+}
+
+class Header {
+  -Row row (1..1)
+}
+
+class Body {
+  -Row rows (0..n)
+}
+
+class Row {
+  -Cell cells (0..n)
+}
+
+class Cell {
+  -String value (1..1)
+  -ColumnInfo columnInfo(1..1)
+}
+
+class ColumnInfo {
+  -String name (1..1)
+  -Integer index (1..1)
+}
+
+CSVParser -down-> CSV
+CSV o-down- Header
+CSV o-down- Body
+Body o-down- Row
+Header o-down- Row
+Row o-down- Cell
+Cell o-down- ColumnInfo
+
+@enduml
