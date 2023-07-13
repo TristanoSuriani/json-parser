@@ -14,12 +14,11 @@ public final class JSONObject extends JSONValue<JSONProperty[]> {
             for (JSONProperty property: value()) {
                 var keyProperty = property.key();
                 var field = clazz.getDeclaredField(keyProperty);
-                var fieldClass = field.getDeclaringClass();
                 var propertyValue = property.value().orElse(null);
                 if (propertyValue instanceof StringValue) {
                     handleStringValue(clazz, newInstance, property, keyProperty);
                 } else {
-                    handleJSONObject(newInstance, property, keyProperty, field, fieldClass);
+                    handleJSONObject(newInstance, property, keyProperty, field, clazz);
                 }
             }
 
@@ -29,13 +28,13 @@ public final class JSONObject extends JSONValue<JSONProperty[]> {
         }
     }
 
-    private static <V> void handleJSONObject(V newInstance, JSONProperty property, String keyProperty, Field field, Class<?> fieldClass) throws Exception {
+    private static <V> void handleJSONObject(V newInstance, JSONProperty property, String keyProperty, Field field, Class<?> clazz) throws Exception {
         var valueProperty = property.value()
                 .map(value -> (JSONObject) value)
                 .map(jsonObject -> deserialiseObject(field, jsonObject))
                 .orElse(null);
 
-        injectProperty(fieldClass, newInstance, keyProperty, valueProperty);
+        injectProperty(clazz, newInstance, keyProperty, valueProperty);
     }
 
     private static <V> void handleStringValue(Class<V> clazz, V newInstance, JSONProperty property, String keyProperty) throws Exception {
