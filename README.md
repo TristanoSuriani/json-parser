@@ -1,12 +1,11 @@
 # CSV Parser TDD Kata
 
-Let's TDD a CSV Parser!
+Let's TDD a JSON Parser!
 <hr>
 
-![RedGreenRefactor](docs/red-green-refactor.jpg)
 
 <hr>
 
 ## Model
 
-![CSVParserModel](docs/Class_Diagram.png)
+![JSONParserModel](docs/Model.png)

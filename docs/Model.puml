@@ -1,0 +1,36 @@
+@startuml
+
+class JSONObject extends JSONValue {
+    -JSONProperty properties (0..n)
+}
+
+class JSONArray extends JSONValue {
+    -JSONValue values (0..n)
+}
+
+class JSONProperty {
+    -String key (1..1)
+    -JSONValue value (0..1)
+}
+
+abstract class JSONValue<T> {
+    -T value (1..1)
+}
+
+class StringValue extends JSONValue {
+    -String value (1..1)
+}
+
+class IntegerValue extends JSONValue {
+    -BigInteger value (1..1)
+}
+
+class DecimalValue extends JSONValue {
+    -BigDecimal value (1..1)
+}
+
+JSONObject o-down- JSONProperty
+JSONArray o-down- JSONProperty
+JSONProperty o-down- JSONValue
+
+@enduml

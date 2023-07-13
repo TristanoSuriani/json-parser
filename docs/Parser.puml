@@ -1,0 +1,15 @@
+@startuml
+
+enum TokenType {
+    NUMBER,
+    DECIMAL,
+    L_BRACKET,
+    R_BRACKET,
+    L_PAREN,
+    R_PAREN,
+    DOUBLE_QUOTE,
+    NULL,
+    ID
+}
+
+@enduml
