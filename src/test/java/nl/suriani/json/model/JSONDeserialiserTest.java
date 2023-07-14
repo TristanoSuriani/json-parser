@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JSONObjectTest {
+class JSONDeserialiserTest {
     @Test
     void emptyObject() {
         var jsonObject = new JSONObject(new JSONProperty[0]);
