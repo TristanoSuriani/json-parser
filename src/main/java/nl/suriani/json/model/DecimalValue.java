@@ -8,7 +8,7 @@ public final class DecimalValue extends JSONValue<BigDecimal> {
     }
 
     public BigDecimal deserialise() {
-        return deserialise();
+        return value();
     }
 
     public Float toFloat() {
