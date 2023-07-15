@@ -1,5 +1,6 @@
 package nl.suriani.json.model;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 
 class JSONDeserialiser {
@@ -26,6 +27,29 @@ class JSONDeserialiser {
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
+    }
+
+    <V> V[] deserialise(JSONArray jsonArray, Class<V> clazz) {
+        var array = (V[]) Array.newInstance(clazz, jsonArray.value().length);
+        var index = -1;
+        try {
+            for (JSONValue jsonValue : jsonArray.value()) {
+                index += 1;
+                if (jsonValue instanceof StringValue) {
+                    var stringValue = (StringValue) jsonValue;
+                    array[index] = (V) stringValue.deserialise();
+                } else if (jsonValue instanceof IntegerValue) {
+                   // handleIntegerValue(clazz, newInstance, property, keyProperty);
+                } else if (jsonValue instanceof DecimalValue) {
+                    //handleDecimalValue(clazz, newInstance, property, keyProperty);
+                } else {
+                    //handleJSONObject(newInstance, property, keyProperty, field, clazz);
+                }
+            }
+        } catch (Exception exception) {
+            throw new RuntimeException(exception);
+        }
+        return array;
     }
 
     private <V> void handleIntegerValue(Class<V> clazz, V newInstance, JSONProperty property, String keyProperty) throws Exception {

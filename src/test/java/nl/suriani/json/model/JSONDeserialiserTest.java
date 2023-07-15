@@ -147,4 +147,15 @@ class JSONDeserialiserTest {
         var inception = something.getSomething().getSomething();
         assertEquals("aValue", inception.getaString());
     }
+
+    @Test
+    void anArrayWithTwoValues_arrayTarget() {
+        var values = new JSONValue[] {
+                new StringValue("first"),
+                new StringValue("second")
+        };
+        var jsonArray = new JSONArray(values);
+        var strings = jsonArray.deserialise(String.class);
+        assertArrayEquals(new String[]{"first", "second"}, strings);
+    }
 }

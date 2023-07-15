@@ -17,6 +17,7 @@ public class Something {
     private Double aDoubleBigD;
     private BigDecimal aBigDecimal;
     private Something something;
+    private int[] arrayOfInts;
     public Something() {
     }
 

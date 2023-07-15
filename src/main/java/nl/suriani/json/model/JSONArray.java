@@ -6,6 +6,7 @@ public final class JSONArray extends JSONValue<JSONValue[]> {
     }
 
     public <V> V[] deserialise(Class<V> clazz) {
-        return null;
+        var jsonDeserialiser = new JSONDeserialiser();
+        return jsonDeserialiser.deserialise(this, clazz);
     }
 }
