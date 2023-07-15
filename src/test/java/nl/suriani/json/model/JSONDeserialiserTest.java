@@ -155,7 +155,7 @@ class JSONDeserialiserTest {
                 new StringValue("second")
         };
         var jsonArray = new JSONArray(values);
-        var strings = jsonArray.deserialise(String.class);
+        var strings = jsonArray.deserialiseToArray(String.class);
         assertArrayEquals(new String[]{"first", "second"}, strings);
     }
 }

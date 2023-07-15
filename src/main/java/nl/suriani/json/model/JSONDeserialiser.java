@@ -29,7 +29,7 @@ class JSONDeserialiser {
         }
     }
 
-    <V> V[] deserialise(JSONArray jsonArray, Class<V> clazz) {
+    <V> V[] deserialiseToArray(JSONArray jsonArray, Class<V> clazz) {
         var array = (V[]) Array.newInstance(clazz, jsonArray.value().length);
         var index = -1;
         try {
@@ -39,7 +39,7 @@ class JSONDeserialiser {
                     var stringValue = (StringValue) jsonValue;
                     array[index] = (V) stringValue.deserialise();
                 } else if (jsonValue instanceof IntegerValue) {
-                   // handleIntegerValue(clazz, newInstance, property, keyProperty);
+                    // handleIntegerValue(clazz, newInstance, property, keyProperty);
                 } else if (jsonValue instanceof DecimalValue) {
                     //handleDecimalValue(clazz, newInstance, property, keyProperty);
                 } else {
