@@ -60,6 +60,7 @@ class JSONDeserialiser {
         if (valueProperty == null) {
             return;
         }
+
         injectProperty(clazz, newInstance, keyProperty, resolveNumberType(clazz.getDeclaredField(keyProperty), valueProperty));
     }
 

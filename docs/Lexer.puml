@@ -1,0 +1,36 @@
+@startuml
+
+class Parser {
+    -lexer: Lexer (1..1)
+}
+
+class Lexer {
+    +lex(text: String): List<Token>
+}
+
+class Token {
+  -lineNumber: int (1..1)
+  -value: String (1..1)
+  -type: TokenType (1..1)
+}
+
+enum TokenType {
+    L_BRACKET,
+    R_BRACKET,
+    L_BRACE,
+    R_BRACE,
+    D_QUOTE,
+    COMMA,
+    SEMICOLON,
+    TRUE,
+    FALSE,
+    NULL,
+    NUMBER,
+    TEXT,
+    ID
+}
+
+Lexer -down-> Token
+Token *-left- TokenType
+Parser *-down- Lexer
+@enduml
